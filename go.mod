@@ -1,4 +1,4 @@
-module looker.com/looker/v3
+module github.com/hoffmanc/looker
 
 go 1.13
 
