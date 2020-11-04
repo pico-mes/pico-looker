@@ -1,4 +1,4 @@
-module looker.com/api/v3
+module looker.com/looker/v3
 
 go 1.13
 
