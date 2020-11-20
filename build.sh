@@ -6,3 +6,5 @@ docker run --rm \
     -g go \
     -o /local \
     --additional-properties=packageName=looker
+
+go mod tidy 
