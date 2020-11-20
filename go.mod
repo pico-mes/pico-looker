@@ -1,4 +1,4 @@
-module github.com/hoffmanc/looker
+module github.com/pico-mes/pico-looker
 
 go 1.13
 
