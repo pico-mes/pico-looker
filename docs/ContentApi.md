@@ -1,6 +1,6 @@
 # \ContentApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -466,10 +466,11 @@ Optional parameters are passed through a pointer to a SearchContentFavoritesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **optional.Int64**| Match content favorite id(s) | 
- **userId** | **optional.Int64**| Match user id(s) | 
- **contentMetadataId** | **optional.Int64**| Match content metadata id(s) | 
- **dashboardId** | **optional.Int64**| Match dashboard id(s) | 
- **lookId** | **optional.Int64**| Match look id(s) | 
+ **userId** | **optional.String**| Match user id(s).To create a list of multiple ids, use commas as separators | 
+ **contentMetadataId** | **optional.String**| Match content metadata id(s).To create a list of multiple ids, use commas as separators | 
+ **dashboardId** | **optional.String**| Match dashboard id(s).To create a list of multiple ids, use commas as separators | 
+ **lookId** | **optional.String**| Match look id(s).To create a list of multiple ids, use commas as separators | 
+ **boardId** | **optional.String**| Match board id(s).To create a list of multiple ids, use commas as separators | 
  **limit** | **optional.Int64**| Number of results to return. (used with offset) | 
  **offset** | **optional.Int64**| Number of results to skip before returning any. (used with limit) | 
  **sorts** | **optional.String**| Fields to sort by. | 
@@ -517,14 +518,14 @@ Optional parameters are passed through a pointer to a SearchContentViewsOpts str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewCount** | **optional.Int64**| Match view count | 
- **groupId** | **optional.Int64**| Match Group Id | 
+ **viewCount** | **optional.String**| Match view count | 
+ **groupId** | **optional.String**| Match Group Id | 
  **lookId** | **optional.String**| Match look_id | 
  **dashboardId** | **optional.String**| Match dashboard_id | 
- **contentMetadataId** | **optional.Int64**| Match content metadata id | 
- **startOfWeekDate** | **optional.String**| Match start of week date | 
+ **contentMetadataId** | **optional.String**| Match content metadata id | 
+ **startOfWeekDate** | **optional.String**| Match start of week date (format is \&quot;YYYY-MM-DD\&quot;) | 
  **allTime** | **optional.Bool**| True if only all time view records should be returned | 
- **userId** | **optional.Int64**| Match user id | 
+ **userId** | **optional.String**| Match user id | 
  **fields** | **optional.String**| Requested fields | 
  **limit** | **optional.Int64**| Number of results to return. Use with &#x60;offset&#x60; to manage pagination of results | 
  **offset** | **optional.Int64**| Number of results to skip before returning data | 
@@ -598,7 +599,7 @@ Update Content Metadata Access
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contentMetadataAccessId** | **int64**| Id of content metadata access | 
+**contentMetadataAccessId** | **string**| Id of content metadata access | 
 **body** | [**ContentMetaGroupUser**](ContentMetaGroupUser.md)| Content Metadata Access | 
 
 ### Return type

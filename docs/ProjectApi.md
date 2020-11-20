@@ -1,6 +1,6 @@
 # \ProjectApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**GetAllRepositoryCredentials**](ProjectApi.md#GetAllRepositoryCredentials) | **Get** /projects/{root_project_id}/credentials | Get All Repository Credentials
 [**GitBranch**](ProjectApi.md#GitBranch) | **Get** /projects/{project_id}/git_branch | Get Active Git Branch
 [**GitDeployKey**](ProjectApi.md#GitDeployKey) | **Get** /projects/{project_id}/git/deploy_key | Git Deploy Key
+[**LockAll**](ProjectApi.md#LockAll) | **Post** /projects/{project_id}/manifest/lock_all | Lock All
 [**Manifest**](ProjectApi.md#Manifest) | **Get** /projects/{project_id}/manifest | Get Manifest
 [**Project**](ProjectApi.md#Project) | **Get** /projects/{project_id} | Get Project
 [**ProjectFile**](ProjectApi.md#ProjectFile) | **Get** /projects/{project_id}/files/file | Get Project File
@@ -632,6 +633,51 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LockAll
+
+> string LockAll(ctx, projectId, optional)
+
+Lock All
+
+      ### Generate Lockfile for All LookML Dependencies        Git must have been configured, must be in dev mode and deploy permission required        Install_all is a two step process       1. For each remote_dependency in a project the dependency manager will resolve any ambiguous ref.       2. The project will then write out a lockfile including each remote_dependency with its resolved ref.  
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string**| Id of project | 
+ **optional** | ***LockAllOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a LockAllOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **optional.String**| Requested fields | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

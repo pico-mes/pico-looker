@@ -1,6 +1,6 @@
 # \GroupApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**DeleteUserAttributeGroupValue**](GroupApi.md#DeleteUserAttributeGroupValue) | **Delete** /groups/{group_id}/attribute_values/{user_attribute_id} | Delete User Attribute Group Value
 [**Group**](GroupApi.md#Group) | **Get** /groups/{group_id} | Get Group
 [**SearchGroups**](GroupApi.md#SearchGroups) | **Get** /groups/search | Search Groups
+[**SearchGroupsWithHierarchy**](GroupApi.md#SearchGroupsWithHierarchy) | **Get** /groups/search/with_hierarchy | Search Groups with Hierarchy
+[**SearchGroupsWithRoles**](GroupApi.md#SearchGroupsWithRoles) | **Get** /groups/search/with_roles | Search Groups with Roles
 [**UpdateGroup**](GroupApi.md#UpdateGroup) | **Patch** /groups/{group_id} | Update Group
 [**UpdateUserAttributeGroupValue**](GroupApi.md#UpdateUserAttributeGroupValue) | **Patch** /groups/{group_id}/attribute_values/{user_attribute_id} | Set User Attribute Group Value
 
@@ -499,6 +501,110 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Group**](Group.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchGroupsWithHierarchy
+
+> []GroupHierarchy SearchGroupsWithHierarchy(ctx, optional)
+
+Search Groups with Hierarchy
+
+### Search groups include hierarchy  Returns all group records that match the given search criteria, and attaches associated role_ids and parent group_ids.  If multiple search params are given and `filter_or` is FALSE or not specified, search params are combined in a logical AND operation. Only rows that match *all* search param criteria will be returned.  If `filter_or` is TRUE, multiple search params are combined in a logical OR operation. Results will include rows that match **any** of the search criteria.  String search params use case-insensitive matching. String search params can contain `%` and '_' as SQL LIKE pattern match wildcard expressions. example=\"dan%\" will match \"danger\" and \"Danzig\" but not \"David\" example=\"D_m%\" will match \"Damage\" and \"dump\"  Integer search params can accept a single value or a comma separated list of values. The multiple values will be combined under a logical OR operation - results will match at least one of the given values.  Most search params can accept \"IS NULL\" and \"NOT NULL\" as special expressions to match or exclude (respectively) rows where the column is null.  Boolean search params accept only \"true\" and \"false\" as values.  
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***SearchGroupsWithHierarchyOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a SearchGroupsWithHierarchyOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **optional.String**| Requested fields. | 
+ **limit** | **optional.Int64**| Number of results to return (used with &#x60;offset&#x60;). | 
+ **offset** | **optional.Int64**| Number of results to skip before returning any (used with &#x60;limit&#x60;). | 
+ **sorts** | **optional.String**| Fields to sort by. | 
+ **filterOr** | **optional.Bool**| Combine given search criteria in a boolean OR expression | 
+ **id** | **optional.Int64**| Match group id. | 
+ **name** | **optional.String**| Match group name. | 
+ **externalGroupId** | **optional.String**| Match group external_group_id. | 
+ **externallyManaged** | **optional.Bool**| Match group externally_managed. | 
+ **externallyOrphaned** | **optional.Bool**| Match group externally_orphaned. | 
+
+### Return type
+
+[**[]GroupHierarchy**](GroupHierarchy.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchGroupsWithRoles
+
+> []GroupSearch SearchGroupsWithRoles(ctx, optional)
+
+Search Groups with Roles
+
+### Search groups include roles  Returns all group records that match the given search criteria, and attaches any associated roles.  If multiple search params are given and `filter_or` is FALSE or not specified, search params are combined in a logical AND operation. Only rows that match *all* search param criteria will be returned.  If `filter_or` is TRUE, multiple search params are combined in a logical OR operation. Results will include rows that match **any** of the search criteria.  String search params use case-insensitive matching. String search params can contain `%` and '_' as SQL LIKE pattern match wildcard expressions. example=\"dan%\" will match \"danger\" and \"Danzig\" but not \"David\" example=\"D_m%\" will match \"Damage\" and \"dump\"  Integer search params can accept a single value or a comma separated list of values. The multiple values will be combined under a logical OR operation - results will match at least one of the given values.  Most search params can accept \"IS NULL\" and \"NOT NULL\" as special expressions to match or exclude (respectively) rows where the column is null.  Boolean search params accept only \"true\" and \"false\" as values.  
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***SearchGroupsWithRolesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a SearchGroupsWithRolesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **optional.String**| Requested fields. | 
+ **limit** | **optional.Int64**| Number of results to return (used with &#x60;offset&#x60;). | 
+ **offset** | **optional.Int64**| Number of results to skip before returning any (used with &#x60;limit&#x60;). | 
+ **sorts** | **optional.String**| Fields to sort by. | 
+ **filterOr** | **optional.Bool**| Combine given search criteria in a boolean OR expression | 
+ **id** | **optional.Int64**| Match group id. | 
+ **name** | **optional.String**| Match group name. | 
+ **externalGroupId** | **optional.String**| Match group external_group_id. | 
+ **externallyManaged** | **optional.Bool**| Match group externally_managed. | 
+ **externallyOrphaned** | **optional.Bool**| Match group externally_orphaned. | 
+
+### Return type
+
+[**[]GroupSearch**](GroupSearch.md)
 
 ### Authorization
 

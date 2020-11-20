@@ -55,6 +55,7 @@ Name | Type | Description | Notes
 **ViewLabel** | **string** | The human-readable label of the view the field belongs to. | [optional] [readonly] 
 **Dynamic** | **bool** | Whether this field was specified in \&quot;dynamic_fields\&quot; and is not part of the model. | [optional] [readonly] 
 **WeekStartDay** | **string** | The name of the starting day of the week. Valid values are: \&quot;monday\&quot;, \&quot;tuesday\&quot;, \&quot;wednesday\&quot;, \&quot;thursday\&quot;, \&quot;friday\&quot;, \&quot;saturday\&quot;, \&quot;sunday\&quot;. | [optional] [readonly] 
+**TimesUsed** | **int64** | The number of times this field has been used in queries | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

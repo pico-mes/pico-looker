@@ -1,6 +1,6 @@
 # \DatagroupApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -54,7 +54,7 @@ Get Datagroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**datagroupId** | **string**| ID of datagroup. | 
+**datagroupId** | **int64**| ID of datagroup. | 
 
 ### Return type
 
@@ -88,7 +88,7 @@ Update Datagroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**datagroupId** | **string**| ID of datagroup. | 
+**datagroupId** | **int64**| ID of datagroup. | 
 **body** | [**Datagroup**](Datagroup.md)| Datagroup | 
 
 ### Return type

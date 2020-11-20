@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **DashboardId** | **int64** | Id of a dashboard | [optional] [readonly] 
 **Look** | [**LookBasic**](LookBasic.md) |  | [optional] 
 **Dashboard** | [**DashboardBase**](DashboardBase.md) |  | [optional] 
+**BoardId** | **int64** | Id of a board | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

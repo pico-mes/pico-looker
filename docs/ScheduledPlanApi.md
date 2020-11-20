@@ -1,6 +1,6 @@
 # \ScheduledPlanApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -363,7 +363,7 @@ Scheduled Plans for LookML Dashboard
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**lookmlDashboardId** | **int64**| LookML Dashboard Id | 
+**lookmlDashboardId** | **string**| LookML Dashboard Id | 
  **optional** | ***ScheduledPlansForLookmlDashboardOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ContentMetadataId** | **int64** | Id of content metadata | [optional] [readonly] 
 **Id** | **int64** | Unique Id | [optional] [readonly] 
 **Title** | **string** | Look Title | [optional] [readonly] 
+**UserId** | **int64** | User Id | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

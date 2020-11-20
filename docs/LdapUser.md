@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **LdapDn** | **string** | LDAP&#39;s distinguished name for the user record | [optional] [readonly] 
 **LdapId** | **string** | LDAP&#39;s Unique ID for the user | [optional] [readonly] 
 **Roles** | **[]string** | Array of user&#39;s roles (role names only) | [optional] [readonly] 
-**Can** | **map[string]bool** | Operations the current user is able to perform on this object | [optional] [readonly] 
 **Url** | **string** | Link to ldap config | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

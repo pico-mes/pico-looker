@@ -1,6 +1,6 @@
 # \LookApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -265,13 +265,14 @@ Name | Type | Description  | Notes
  **id** | **optional.String**| Match look id. | 
  **title** | **optional.String**| Match Look title. | 
  **description** | **optional.String**| Match Look description. | 
- **contentFavoriteId** | **optional.Int64**| Select looks with a particular content favorite id | 
- **spaceId** | **optional.String**| Select looks in a particular space. | 
+ **contentFavoriteId** | **optional.String**| Select looks with a particular content favorite id | 
+ **folderId** | **optional.String**| Select looks in a particular folder. | 
  **userId** | **optional.String**| Select looks created by a particular user. | 
  **viewCount** | **optional.String**| Select looks with particular view_count value | 
  **deleted** | **optional.Bool**| Select soft-deleted looks | 
  **queryId** | **optional.Int64**| Select looks that reference a particular query by query_id | 
  **curate** | **optional.Bool**| Exclude items that exist only in personal spaces other than the users | 
+ **lastViewedAt** | **optional.String**| Select looks based on when they were last viewed | 
  **fields** | **optional.String**| Requested fields. | 
  **page** | **optional.Int64**| Requested page. | 
  **perPage** | **optional.Int64**| Results per page. | 

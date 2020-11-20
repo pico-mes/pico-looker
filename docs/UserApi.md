@@ -1,6 +1,6 @@
 # \UserApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,6 +28,7 @@ Method | HTTP request | Description
 [**Me**](UserApi.md#Me) | **Get** /user | Get Current User
 [**SearchUsers**](UserApi.md#SearchUsers) | **Get** /users/search | Search Users
 [**SearchUsersNames**](UserApi.md#SearchUsersNames) | **Get** /users/search/names/{pattern} | Search User Names
+[**SendUserCredentialsEmailPasswordReset**](UserApi.md#SendUserCredentialsEmailPasswordReset) | **Post** /users/{user_id}/credentials_email/send_password_reset | Send Password Reset Token
 [**SetUserAttributeUserValue**](UserApi.md#SetUserAttributeUserValue) | **Patch** /users/{user_id}/attribute_values/{user_attribute_id} | Set User Attribute User Value
 [**SetUserRoles**](UserApi.md#SetUserRoles) | **Put** /users/{user_id}/roles | Set User Roles
 [**UpdateUser**](UserApi.md#UpdateUser) | **Patch** /users/{user_id} | Update User
@@ -942,15 +943,15 @@ Name | Type | Description  | Notes
  **page** | **optional.Int64**| Return only page N of paginated results | 
  **perPage** | **optional.Int64**| Return N rows of data per page | 
  **sorts** | **optional.String**| Fields to sort by. | 
- **id** | **optional.Int64**| Match User Id. | 
+ **id** | **optional.String**| Match User Id. | 
  **firstName** | **optional.String**| Match First name. | 
  **lastName** | **optional.String**| Match Last name. | 
  **verifiedLookerEmployee** | **optional.Bool**| Search for user accounts associated with Looker employees | 
  **email** | **optional.String**| Search for the user with this email address | 
  **isDisabled** | **optional.Bool**| Search for disabled user accounts | 
  **filterOr** | **optional.Bool**| Combine given search criteria in a boolean OR expression | 
- **contentMetadataId** | **optional.Int64**| Search for users who have access to this content_metadata item | 
- **groupId** | **optional.Int64**| Search for users who are direct members of this group | 
+ **contentMetadataId** | **optional.String**| Search for users who have access to this content_metadata item | 
+ **groupId** | **optional.String**| Search for users who are direct members of this group | 
 
 ### Return type
 
@@ -1009,6 +1010,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SendUserCredentialsEmailPasswordReset
+
+> CredentialsEmail SendUserCredentialsEmailPasswordReset(ctx, userId, optional)
+
+Send Password Reset Token
+
+### Send a password reset token. This will send a password reset email to the user. If a password reset token does not already exist for this user, it will create one and then send it. If the user has not yet set up their account, it will send a setup email to the user. The URL sent in the email is expressed as the 'password_reset_url' of the user's email/password credential object. Password reset URLs will expire in 60 minutes. This method can be called with an empty body. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **int64**| Id of user | 
+ **optional** | ***SendUserCredentialsEmailPasswordResetOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a SendUserCredentialsEmailPasswordResetOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **optional.String**| Requested fields. | 
+
+### Return type
+
+[**CredentialsEmail**](CredentialsEmail.md)
 
 ### Authorization
 

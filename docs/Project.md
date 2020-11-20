@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **GitReleaseMgmtEnabled** | **bool** | If true, advanced git release management is enabled for this project | [optional] 
 **AllowWarnings** | **bool** | Validation policy: If true, the project can be committed with warnings when &#x60;validation_required&#x60; is true. (&#x60;allow_warnings&#x60; does nothing if &#x60;validation_required&#x60; is false). | [optional] 
 **IsExample** | **bool** | If true the project is an example project and cannot be modified | [optional] [readonly] 
+**DependencyStatus** | **string** | Status of dependencies in your manifest &amp; lockfile | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

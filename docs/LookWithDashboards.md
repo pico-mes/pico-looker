@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ContentMetadataId** | **int64** | Id of content metadata | [optional] [readonly] 
 **Id** | **int64** | Unique Id | [optional] [readonly] 
 **Title** | **string** | Look Title | [optional] 
+**UserId** | **int64** | User Id | [optional] 
 **ContentFavoriteId** | **int64** | Content Favorite Id | [optional] [readonly] 
 **CreatedAt** | [**time.Time**](time.Time.md) | Time that the Look was created. | [optional] [readonly] 
 **Deleted** | **bool** | Whether or not a look is &#39;soft&#39; deleted. | [optional] 
@@ -32,11 +33,7 @@ Name | Type | Description | Notes
 **Folder** | [**FolderBase**](FolderBase.md) |  | [optional] 
 **FolderId** | **string** | Folder Id | [optional] 
 **UpdatedAt** | [**time.Time**](time.Time.md) | Time that the Look was updated. | [optional] [readonly] 
-**UserId** | **int64** | User Id | [optional] 
 **ViewCount** | **int64** | Number of times viewed in the Looker web UI | [optional] [readonly] 
-**User** | [**UserIdOnly**](UserIdOnly.md) |  | [optional] 
-**SpaceId** | **string** | Space Id | [optional] 
-**Space** | [**SpaceBase**](SpaceBase.md) |  | [optional] 
 **Dashboards** | [**[]DashboardBase**](DashboardBase.md) | Dashboards | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
