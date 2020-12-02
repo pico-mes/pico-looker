@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **Url** | **string** | Expanded Url | [optional] [readonly] 
 **QueryTimezone** | **string** | Query Timezone | [optional] 
 **HasTableCalculations** | **bool** | Has Table Calculations | [optional] [readonly] 
+**Runtime** | **float64** | (DEPRECATED) Runtime (Deprecated) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

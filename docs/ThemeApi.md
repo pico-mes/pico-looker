@@ -1,6 +1,6 @@
 # \ThemeApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -316,7 +316,7 @@ Get Theme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**themeId** | **int64**| Id of theme | 
+**themeId** | **string**| Id of theme | 
  **optional** | ***ThemeOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -406,7 +406,7 @@ Update Theme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**themeId** | **int64**| Id of theme | 
+**themeId** | **string**| Id of theme | 
 **body** | [**Theme**](Theme.md)| Theme | 
 
 ### Return type

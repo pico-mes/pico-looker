@@ -1,11 +1,12 @@
 # \RenderTaskApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDashboardRenderTask**](RenderTaskApi.md#CreateDashboardRenderTask) | **Post** /render_tasks/dashboards/{dashboard_id}/{result_format} | Create Dashboard Render Task
 [**CreateLookRenderTask**](RenderTaskApi.md#CreateLookRenderTask) | **Post** /render_tasks/looks/{look_id}/{result_format} | Create Look Render Task
+[**CreateLookmlDashboardRenderTask**](RenderTaskApi.md#CreateLookmlDashboardRenderTask) | **Post** /render_tasks/lookml_dashboards/{dashboard_id}/{result_format} | Create Lookml Dashboard Render Task
 [**CreateQueryRenderTask**](RenderTaskApi.md#CreateQueryRenderTask) | **Post** /render_tasks/queries/{query_id}/{result_format} | Create Query Render Task
 [**RenderTask**](RenderTaskApi.md#RenderTask) | **Get** /render_tasks/{render_task_id} | Get Render Task
 [**RenderTaskResults**](RenderTaskApi.md#RenderTaskResults) | **Get** /render_tasks/{render_task_id}/results | Render Task Results
@@ -26,7 +27,7 @@ Create Dashboard Render Task
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string**| Id of dashboard to render. The ID can be a LookML dashboard also. | 
+**dashboardId** | **int64**| Id of dashboard to render | 
 **resultFormat** | **string**| Output type: pdf, png, or jpg | 
 **width** | **int64**| Output width in pixels | 
 **height** | **int64**| Output height in pixels | 
@@ -48,7 +49,6 @@ Name | Type | Description  | Notes
  **fields** | **optional.String**| Requested fields. | 
  **pdfPaperSize** | **optional.String**| Paper size for pdf. Value can be one of: [\&quot;letter\&quot;,\&quot;legal\&quot;,\&quot;tabloid\&quot;,\&quot;a0\&quot;,\&quot;a1\&quot;,\&quot;a2\&quot;,\&quot;a3\&quot;,\&quot;a4\&quot;,\&quot;a5\&quot;] | 
  **pdfLandscape** | **optional.Bool**| Whether to render pdf in landscape paper orientation | 
- **longTables** | **optional.Bool**| Whether or not to expand table vis to full length | 
 
 ### Return type
 
@@ -112,6 +112,61 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateLookmlDashboardRenderTask
+
+> RenderTask CreateLookmlDashboardRenderTask(ctx, dashboardId, resultFormat, width, height, body, optional)
+
+Create Lookml Dashboard Render Task
+
+### Create a new task to render a lookml dashboard to a document or image.  # DEPRECATED:  Use [create_dashboard_render_task()](#!/RenderTask/create_dashboard_render_task) in API 4.0+  Returns a render task object. To check the status of a render task, pass the render_task.id to [Get Render Task](#!/RenderTask/get_render_task). Once the render task is complete, you can download the resulting document or image using [Get Render Task Results](#!/RenderTask/get_render_task_results).  
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**dashboardId** | **string**| Id of lookml dashboard to render | 
+**resultFormat** | **string**| Output type: pdf, png, or jpg | 
+**width** | **int64**| Output width in pixels | 
+**height** | **int64**| Output height in pixels | 
+**body** | [**CreateDashboardRenderTask**](CreateDashboardRenderTask.md)| Dashboard render task parameters | 
+ **optional** | ***CreateLookmlDashboardRenderTaskOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a CreateLookmlDashboardRenderTaskOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+ **fields** | **optional.String**| Requested fields. | 
+ **pdfPaperSize** | **optional.String**| Paper size for pdf. Value can be one of: [\&quot;letter\&quot;,\&quot;legal\&quot;,\&quot;tabloid\&quot;,\&quot;a0\&quot;,\&quot;a1\&quot;,\&quot;a2\&quot;,\&quot;a3\&quot;,\&quot;a4\&quot;,\&quot;a5\&quot;] | 
+ **pdfLandscape** | **optional.Bool**| Whether to render pdf in landscape | 
+
+### Return type
+
+[**RenderTask**](RenderTask.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

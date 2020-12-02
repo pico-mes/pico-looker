@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Snippets** | [**[]Snippet**](Snippet.md) | SQL Runner snippets for this connection | [optional] [readonly] 
 **PdtsEnabled** | **bool** | True if PDTs are enabled on this connection | [optional] [readonly] 
 **Host** | **string** | Host name/address of server | [optional] 
-**Port** | **int64** | Port number on server | [optional] 
+**Port** | **string** | Port number on server | [optional] 
 **Username** | **string** | Username for server authentication | [optional] 
 **Password** | **string** | (Write-Only) Password for server authentication | [optional] 
 **UsesOauth** | **bool** | Whether the connection uses OAuth for authentication. | [optional] [readonly] 
@@ -40,9 +40,6 @@ Name | Type | Description | Notes
 **AfterConnectStatements** | **string** | SQL statements (semicolon separated) to issue after connecting to the database. Requires &#x60;custom_after_connect_statements&#x60; license feature | [optional] 
 **PdtContextOverride** | [**DbConnectionOverride**](DBConnectionOverride.md) |  | [optional] 
 **Managed** | **bool** | Is this connection created and managed by Looker | [optional] [readonly] 
-**TunnelId** | **string** | The Id of the ssh tunnel this connection uses | [optional] 
-**PdtConcurrency** | **int64** | Maximum number of threads to use to build PDTs in parallel | [optional] 
-**DisableContextComment** | **bool** | When disable_context_comment is true comment will not be added to SQL | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

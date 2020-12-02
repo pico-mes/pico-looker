@@ -1,11 +1,11 @@
 # Go API client for looker
 
- Welcome to the future! This is an early preview of our next-generation Looker API 4.0. API 4.0 runs alongside APIs 3.1 and 3.0. We've tagged 4.0 as \"experimental\" to reflect that we have more work planned for API 4.0 which may include breaking changes. Please pardon our dust while we remodel a few rooms!  ### In This Release  We're spinning up this new API 4.0 version so that we can make adjustments to our API functions, parameters, and response types to fix bugs and inconsistencies. These changes fall outside the bounds of non-breaking additive changes we can make to our stable API 3.1.  One benefit of these type adjustments in API 4.0 is dramatically better support for strongly typed languages like TypeScript, Kotlin, Java, and more. Looker is also creating client SDKs to call the Looker API from these and other languages. These client SDKs will be available as pre-built packages for download from public repositories such as npmjs.org, RubyGems.org, PyPi.org. If you use an IDE for software development, you will soon be able to install a Looker SDK for your programming language with the click of a button!  While API 3.1 is still the defacto Looker API (\"current\", \"stable\", \"default\", etc), the bulk of our development activity will gradually shift to API 4.0.  
+### Authorization  The Looker API uses Looker **API3** credentials for authorization and access control. Looker admins can create API3 credentials on Looker's **Admin/Users** page. Pass API3 credentials to the **_/login** endpoint to obtain a temporary access_token. Include that access_token in the Authorization header of Looker API requests. For details, see [Looker API Authorization](https://looker.com/docs/r/api/authorization)  ### Client SDKs  The Looker API is a RESTful system that should be usable by any programming language capable of making HTTPS requests. Client SDKs for a variety of programming languages can be generated from the Looker API's Swagger JSON metadata to streamline use of the Looker API in your applications. A client SDK for Ruby is available as an example. For more information, see [Looker API Client SDKs](https://looker.com/docs/r/api/client_sdks)  ### Try It Out!  The 'api-docs' page served by the Looker instance includes 'Try It Out!' buttons for each API method. After logging in with API3 credentials, you can use the \"Try It Out!\" buttons to call the API directly from the documentation page to interactively explore API features and responses.  Note! With great power comes great responsibility: The \"Try It Out!\" button makes API calls to your live Looker instance. Be especially careful with destructive API operations such as `delete_user` or similar. There is no \"undo\" for API operations.  ### Versioning  Future releases of Looker will expand this API release-by-release to securely expose more and more of the core power of Looker to API client applications. API endpoints marked as \"beta\" may receive breaking changes without warning (but we will try to avoid doing that). Stable (non-beta) API endpoints should not receive breaking changes in future releases. For more information, see [Looker API Versioning](https://looker.com/docs/r/api/versioning)  ### In This Release  The following are a few examples of noteworthy items that have changed between API 3.0 and API 3.1. For more comprehensive coverage of API changes, please see the release notes for your Looker release.  ### Examples of new things added in API 3.1 (compared to API 3.0):  * [Dashboard construction](#!/3.1/Dashboard/) APIs * [Themes](#!/3.1/Theme/) and [custom color collections](#!/3.1/ColorCollection) APIs * Create and run [SQL Runner](#!/3.1/Query/run_sql_query) queries * Create and run [merged results](#!/3.1/Query/create_merge_query) queries * Create and modify [dashboard filters](#!/3.1/Dashboard/create_dashboard_filter) * Create and modify [password requirements](#!/3.1/Auth/password_config)  ### Deprecated in API 3.0  The following functions and properties have been deprecated in API 3.0.  They continue to exist and work in API 3.0 for the next several Looker releases but they have not been carried forward to API 3.1:  * Dashboard Prefetch functions * User access_filter functions * User API 1.0 credentials functions * Space.is_root and Space.is_user_root properties. Use Space.is_shared_root and Space.is_users_root instead.  ### Semantic changes in API 3.1:  * [all_looks()](#!/3.1/Look/all_looks) no longer includes soft-deleted looks, matching [all_dashboards()](#!/3.1/Dashboard/all_dashboards) behavior. You can find soft-deleted looks using [search_looks()](#!/3.1/Look/search_looks) with the `deleted` param set to True. * [all_spaces()](#!/3.1/Space/all_spaces) no longer includes duplicate items * [search_users()](#!/3.1/User/search_users) no longer accepts Y,y,1,0,N,n for Boolean params, only \"true\" and \"false\". * For greater client and network compatibility, [render_task_results](#!/3.1/RenderTask/render_task_results) now returns HTTP status **202 Accepted** instead of HTTP status **102 Processing** * [all_running_queries()](#!/3.1/Query/all_running_queries) and [kill_query](#!/3.1/Query/kill_query) functions have moved into the [Query](#!/3.1/Query/) function group.   If you have application code which relies on the old behavior of the APIs above, you may continue using the API 3.0 functions in this Looker release. We strongly suggest you update your code to use API 3.1 analogs as soon as possible.  
 
 ## Overview
 This API client was generated by the [OpenAPI Generator](https://openapi-generator.tech) project.  By using the [OpenAPI-spec](https://www.openapis.org/) from a remote server, you can easily generate an API client.
 
-- API version: 4.0.7.18
+- API version: 3.1.0
 - Package version: 1.0.0
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [https://help.looker.com](https://help.looker.com)
@@ -29,35 +29,27 @@ import "./looker"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ApiAuthApi* | [**Login**](docs/ApiAuthApi.md#login) | **Post** /login | Login
 *ApiAuthApi* | [**LoginUser**](docs/ApiAuthApi.md#loginuser) | **Post** /login/{user_id} | Login user
 *ApiAuthApi* | [**Logout**](docs/ApiAuthApi.md#logout) | **Delete** /logout | Logout
-*AuthApi* | [**ActivateAppUser**](docs/AuthApi.md#activateappuser) | **Post** /oauth_client_apps/{client_guid}/users/{user_id} | Activate OAuth App User
-*AuthApi* | [**AllOauthClientApps**](docs/AuthApi.md#alloauthclientapps) | **Get** /oauth_client_apps | Get All OAuth Client Apps
 *AuthApi* | [**AllUserLoginLockouts**](docs/AuthApi.md#alluserloginlockouts) | **Get** /user_login_lockouts | Get All User Login Lockouts
-*AuthApi* | [**CreateEmbedUrlAsMe**](docs/AuthApi.md#createembedurlasme) | **Post** /embed/token_url/me | Create Embed Url
 *AuthApi* | [**CreateOidcTestConfig**](docs/AuthApi.md#createoidctestconfig) | **Post** /oidc_test_configs | Create OIDC Test Configuration
 *AuthApi* | [**CreateSamlTestConfig**](docs/AuthApi.md#createsamltestconfig) | **Post** /saml_test_configs | Create SAML Test Configuration
 *AuthApi* | [**CreateSsoEmbedUrl**](docs/AuthApi.md#createssoembedurl) | **Post** /embed/sso_url | Create SSO Embed Url
-*AuthApi* | [**DeactivateAppUser**](docs/AuthApi.md#deactivateappuser) | **Delete** /oauth_client_apps/{client_guid}/users/{user_id} | Deactivate OAuth App User
-*AuthApi* | [**DeleteOauthClientApp**](docs/AuthApi.md#deleteoauthclientapp) | **Delete** /oauth_client_apps/{client_guid} | Delete OAuth Client App
 *AuthApi* | [**DeleteOidcTestConfig**](docs/AuthApi.md#deleteoidctestconfig) | **Delete** /oidc_test_configs/{test_slug} | Delete OIDC Test Configuration
 *AuthApi* | [**DeleteSamlTestConfig**](docs/AuthApi.md#deletesamltestconfig) | **Delete** /saml_test_configs/{test_slug} | Delete SAML Test Configuration
 *AuthApi* | [**DeleteUserLoginLockout**](docs/AuthApi.md#deleteuserloginlockout) | **Delete** /user_login_lockout/{key} | Delete User Login Lockout
 *AuthApi* | [**FetchAndParseSamlIdpMetadata**](docs/AuthApi.md#fetchandparsesamlidpmetadata) | **Post** /fetch_and_parse_saml_idp_metadata | Parse SAML IdP Url
 *AuthApi* | [**ForcePasswordResetAtNextLoginForAllUsers**](docs/AuthApi.md#forcepasswordresetatnextloginforallusers) | **Put** /password_config/force_password_reset_at_next_login_for_all_users | Force password reset
-*AuthApi* | [**InvalidateTokens**](docs/AuthApi.md#invalidatetokens) | **Delete** /oauth_client_apps/{client_guid}/tokens | Invalidate Tokens
 *AuthApi* | [**LdapConfig**](docs/AuthApi.md#ldapconfig) | **Get** /ldap_config | Get LDAP Configuration
-*AuthApi* | [**OauthClientApp**](docs/AuthApi.md#oauthclientapp) | **Get** /oauth_client_apps/{client_guid} | Get OAuth Client App
 *AuthApi* | [**OidcConfig**](docs/AuthApi.md#oidcconfig) | **Get** /oidc_config | Get OIDC Configuration
 *AuthApi* | [**OidcTestConfig**](docs/AuthApi.md#oidctestconfig) | **Get** /oidc_test_configs/{test_slug} | Get OIDC Test Configuration
 *AuthApi* | [**ParseSamlIdpMetadata**](docs/AuthApi.md#parsesamlidpmetadata) | **Post** /parse_saml_idp_metadata | Parse SAML IdP XML
 *AuthApi* | [**PasswordConfig**](docs/AuthApi.md#passwordconfig) | **Get** /password_config | Get Password Config
-*AuthApi* | [**RegisterOauthClientApp**](docs/AuthApi.md#registeroauthclientapp) | **Post** /oauth_client_apps/{client_guid} | Register OAuth App
 *AuthApi* | [**SamlConfig**](docs/AuthApi.md#samlconfig) | **Get** /saml_config | Get SAML Configuration
 *AuthApi* | [**SamlTestConfig**](docs/AuthApi.md#samltestconfig) | **Get** /saml_test_configs/{test_slug} | Get SAML Test Configuration
 *AuthApi* | [**SearchUserLoginLockouts**](docs/AuthApi.md#searchuserloginlockouts) | **Get** /user_login_lockouts/search | Search User Login Lockouts
@@ -67,27 +59,10 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**TestLdapConfigUserAuth**](docs/AuthApi.md#testldapconfiguserauth) | **Put** /ldap_config/test_user_auth | Test LDAP User Auth
 *AuthApi* | [**TestLdapConfigUserInfo**](docs/AuthApi.md#testldapconfiguserinfo) | **Put** /ldap_config/test_user_info | Test LDAP User Info
 *AuthApi* | [**UpdateLdapConfig**](docs/AuthApi.md#updateldapconfig) | **Patch** /ldap_config | Update LDAP Configuration
-*AuthApi* | [**UpdateOauthClientApp**](docs/AuthApi.md#updateoauthclientapp) | **Patch** /oauth_client_apps/{client_guid} | Update OAuth App
 *AuthApi* | [**UpdateOidcConfig**](docs/AuthApi.md#updateoidcconfig) | **Patch** /oidc_config | Update OIDC Configuration
 *AuthApi* | [**UpdatePasswordConfig**](docs/AuthApi.md#updatepasswordconfig) | **Patch** /password_config | Update Password Config
 *AuthApi* | [**UpdateSamlConfig**](docs/AuthApi.md#updatesamlconfig) | **Patch** /saml_config | Update SAML Configuration
 *AuthApi* | [**UpdateSessionConfig**](docs/AuthApi.md#updatesessionconfig) | **Patch** /session_config | Update Session Config
-*BoardApi* | [**AllBoardItems**](docs/BoardApi.md#allboarditems) | **Get** /board_items | Get All Board Items
-*BoardApi* | [**AllBoardSections**](docs/BoardApi.md#allboardsections) | **Get** /board_sections | Get All Board sections
-*BoardApi* | [**AllBoards**](docs/BoardApi.md#allboards) | **Get** /boards | Get All Boards
-*BoardApi* | [**Board**](docs/BoardApi.md#board) | **Get** /boards/{board_id} | Get Board
-*BoardApi* | [**BoardItem**](docs/BoardApi.md#boarditem) | **Get** /board_items/{board_item_id} | Get Board Item
-*BoardApi* | [**BoardSection**](docs/BoardApi.md#boardsection) | **Get** /board_sections/{board_section_id} | Get Board section
-*BoardApi* | [**CreateBoard**](docs/BoardApi.md#createboard) | **Post** /boards | Create Board
-*BoardApi* | [**CreateBoardItem**](docs/BoardApi.md#createboarditem) | **Post** /board_items | Create Board Item
-*BoardApi* | [**CreateBoardSection**](docs/BoardApi.md#createboardsection) | **Post** /board_sections | Create Board section
-*BoardApi* | [**DeleteBoard**](docs/BoardApi.md#deleteboard) | **Delete** /boards/{board_id} | Delete Board
-*BoardApi* | [**DeleteBoardItem**](docs/BoardApi.md#deleteboarditem) | **Delete** /board_items/{board_item_id} | Delete Board Item
-*BoardApi* | [**DeleteBoardSection**](docs/BoardApi.md#deleteboardsection) | **Delete** /board_sections/{board_section_id} | Delete Board section
-*BoardApi* | [**SearchBoards**](docs/BoardApi.md#searchboards) | **Get** /boards/search | Search Boards
-*BoardApi* | [**UpdateBoard**](docs/BoardApi.md#updateboard) | **Patch** /boards/{board_id} | Update Board
-*BoardApi* | [**UpdateBoardItem**](docs/BoardApi.md#updateboarditem) | **Patch** /board_items/{board_item_id} | Update Board Item
-*BoardApi* | [**UpdateBoardSection**](docs/BoardApi.md#updateboardsection) | **Patch** /board_sections/{board_section_id} | Update Board section
 *ColorCollectionApi* | [**AllColorCollections**](docs/ColorCollectionApi.md#allcolorcollections) | **Get** /color_collections | Get all Color Collections
 *ColorCollectionApi* | [**ColorCollection**](docs/ColorCollectionApi.md#colorcollection) | **Get** /color_collections/{collection_id} | Get Color Collection by ID
 *ColorCollectionApi* | [**ColorCollectionsCustom**](docs/ColorCollectionApi.md#colorcollectionscustom) | **Get** /color_collections/custom | Get all Custom Color Collections
@@ -97,13 +72,10 @@ Class | Method | HTTP request | Description
 *ColorCollectionApi* | [**DeleteColorCollection**](docs/ColorCollectionApi.md#deletecolorcollection) | **Delete** /color_collections/{collection_id} | Delete ColorCollection
 *ColorCollectionApi* | [**SetDefaultColorCollection**](docs/ColorCollectionApi.md#setdefaultcolorcollection) | **Put** /color_collections/default | Set Default Color Collection
 *ColorCollectionApi* | [**UpdateColorCollection**](docs/ColorCollectionApi.md#updatecolorcollection) | **Patch** /color_collections/{collection_id} | Update Custom Color collection
-*CommandApi* | [**CreateCommand**](docs/CommandApi.md#createcommand) | **Post** /commands | Create a custom command
-*CommandApi* | [**DeleteCommand**](docs/CommandApi.md#deletecommand) | **Delete** /commands/{command_id} | Delete a custom command
-*CommandApi* | [**GetAllCommands**](docs/CommandApi.md#getallcommands) | **Get** /commands | Get All Commands
-*CommandApi* | [**UpdateCommand**](docs/CommandApi.md#updatecommand) | **Patch** /commands/{command_id} | Update a custom command
 *ConfigApi* | [**AllLegacyFeatures**](docs/ConfigApi.md#alllegacyfeatures) | **Get** /legacy_features | Get All Legacy Features
 *ConfigApi* | [**AllLocales**](docs/ConfigApi.md#alllocales) | **Get** /locales | Get All Locales
 *ConfigApi* | [**AllTimezones**](docs/ConfigApi.md#alltimezones) | **Get** /timezones | Get All Timezones
+*ConfigApi* | [**BackupConfiguration**](docs/ConfigApi.md#backupconfiguration) | **Get** /backup_configuration | Get Backup Configuration
 *ConfigApi* | [**CloudStorageConfiguration**](docs/ConfigApi.md#cloudstorageconfiguration) | **Get** /cloud_storage | Get Cloud Storage
 *ConfigApi* | [**CreateDigestEmailSend**](docs/ConfigApi.md#createdigestemailsend) | **Post** /digest_email_send | Deliver digest email contents
 *ConfigApi* | [**CustomWelcomeEmail**](docs/ConfigApi.md#customwelcomeemail) | **Get** /custom_welcome_email | Get Custom Welcome Email
@@ -111,6 +83,7 @@ Class | Method | HTTP request | Description
 *ConfigApi* | [**InternalHelpResources**](docs/ConfigApi.md#internalhelpresources) | **Get** /internal_help_resources_enabled | Get Internal Help Resources
 *ConfigApi* | [**InternalHelpResourcesContent**](docs/ConfigApi.md#internalhelpresourcescontent) | **Get** /internal_help_resources_content | Get Internal Help Resources Content
 *ConfigApi* | [**LegacyFeature**](docs/ConfigApi.md#legacyfeature) | **Get** /legacy_features/{legacy_feature_id} | Get Legacy Feature
+*ConfigApi* | [**UpdateBackupConfiguration**](docs/ConfigApi.md#updatebackupconfiguration) | **Patch** /backup_configuration | Update Backup Configuration
 *ConfigApi* | [**UpdateCloudStorageConfiguration**](docs/ConfigApi.md#updatecloudstorageconfiguration) | **Patch** /cloud_storage | Update Cloud Storage
 *ConfigApi* | [**UpdateCustomWelcomeEmail**](docs/ConfigApi.md#updatecustomwelcomeemail) | **Patch** /custom_welcome_email | Update Custom Welcome Email Content
 *ConfigApi* | [**UpdateCustomWelcomeEmailTest**](docs/ConfigApi.md#updatecustomwelcomeemailtest) | **Put** /custom_welcome_email_test | Send a test welcome email to the currently logged in user with the supplied content 
@@ -123,26 +96,13 @@ Class | Method | HTTP request | Description
 *ConfigApi* | [**WhitelabelConfiguration**](docs/ConfigApi.md#whitelabelconfiguration) | **Get** /whitelabel_configuration | Get Whitelabel configuration
 *ConnectionApi* | [**AllConnections**](docs/ConnectionApi.md#allconnections) | **Get** /connections | Get All Connections
 *ConnectionApi* | [**AllDialectInfos**](docs/ConnectionApi.md#alldialectinfos) | **Get** /dialect_info | Get All Dialect Infos
-*ConnectionApi* | [**AllSshServers**](docs/ConnectionApi.md#allsshservers) | **Get** /ssh_servers | Get All SSH Servers
-*ConnectionApi* | [**AllSshTunnels**](docs/ConnectionApi.md#allsshtunnels) | **Get** /ssh_tunnels | Get All SSH Tunnels
 *ConnectionApi* | [**Connection**](docs/ConnectionApi.md#connection) | **Get** /connections/{connection_name} | Get Connection
 *ConnectionApi* | [**CreateConnection**](docs/ConnectionApi.md#createconnection) | **Post** /connections | Create Connection
-*ConnectionApi* | [**CreateSshServer**](docs/ConnectionApi.md#createsshserver) | **Post** /ssh_servers | Create SSH Server
-*ConnectionApi* | [**CreateSshTunnel**](docs/ConnectionApi.md#createsshtunnel) | **Post** /ssh_tunnels | Create SSH Tunnel
 *ConnectionApi* | [**DeleteConnection**](docs/ConnectionApi.md#deleteconnection) | **Delete** /connections/{connection_name} | Delete Connection
 *ConnectionApi* | [**DeleteConnectionOverride**](docs/ConnectionApi.md#deleteconnectionoverride) | **Delete** /connections/{connection_name}/connection_override/{override_context} | Delete Connection Override
-*ConnectionApi* | [**DeleteSshServer**](docs/ConnectionApi.md#deletesshserver) | **Delete** /ssh_server/{ssh_server_id} | Delete SSH Server
-*ConnectionApi* | [**DeleteSshTunnel**](docs/ConnectionApi.md#deletesshtunnel) | **Delete** /ssh_tunnel/{ssh_tunnel_id} | Delete SSH Tunnel
-*ConnectionApi* | [**SshPublicKey**](docs/ConnectionApi.md#sshpublickey) | **Get** /ssh_public_key | Get SSH Public Key
-*ConnectionApi* | [**SshServer**](docs/ConnectionApi.md#sshserver) | **Get** /ssh_server/{ssh_server_id} | Get SSH Server
-*ConnectionApi* | [**SshTunnel**](docs/ConnectionApi.md#sshtunnel) | **Get** /ssh_tunnel/{ssh_tunnel_id} | Get SSH Tunnel
 *ConnectionApi* | [**TestConnection**](docs/ConnectionApi.md#testconnection) | **Put** /connections/{connection_name}/test | Test Connection
 *ConnectionApi* | [**TestConnectionConfig**](docs/ConnectionApi.md#testconnectionconfig) | **Put** /connections/test | Test Connection Configuration
-*ConnectionApi* | [**TestSshServer**](docs/ConnectionApi.md#testsshserver) | **Get** /ssh_server/{ssh_server_id}/test | Test SSH Server
-*ConnectionApi* | [**TestSshTunnel**](docs/ConnectionApi.md#testsshtunnel) | **Get** /ssh_tunnel/{ssh_tunnel_id}/test | Test SSH Tunnel
 *ConnectionApi* | [**UpdateConnection**](docs/ConnectionApi.md#updateconnection) | **Patch** /connections/{connection_name} | Update Connection
-*ConnectionApi* | [**UpdateSshServer**](docs/ConnectionApi.md#updatesshserver) | **Patch** /ssh_server/{ssh_server_id} | Update SSH Server
-*ConnectionApi* | [**UpdateSshTunnel**](docs/ConnectionApi.md#updatesshtunnel) | **Patch** /ssh_tunnel/{ssh_tunnel_id} | Update SSH Tunnel
 *ContentApi* | [**AllContentMetadataAccesses**](docs/ContentApi.md#allcontentmetadataaccesses) | **Get** /content_metadata_access | Get All Content Metadata Accesses
 *ContentApi* | [**AllContentMetadatas**](docs/ContentApi.md#allcontentmetadatas) | **Get** /content_metadata | Get All Content Metadatas
 *ContentApi* | [**ContentFavorite**](docs/ContentApi.md#contentfavorite) | **Get** /content_favorite/{content_favorite_id} | Get Favorite Content
@@ -216,11 +176,25 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**DeleteUserAttributeGroupValue**](docs/GroupApi.md#deleteuserattributegroupvalue) | **Delete** /groups/{group_id}/attribute_values/{user_attribute_id} | Delete User Attribute Group Value
 *GroupApi* | [**Group**](docs/GroupApi.md#group) | **Get** /groups/{group_id} | Get Group
 *GroupApi* | [**SearchGroups**](docs/GroupApi.md#searchgroups) | **Get** /groups/search | Search Groups
-*GroupApi* | [**SearchGroupsWithHierarchy**](docs/GroupApi.md#searchgroupswithhierarchy) | **Get** /groups/search/with_hierarchy | Search Groups with Hierarchy
-*GroupApi* | [**SearchGroupsWithRoles**](docs/GroupApi.md#searchgroupswithroles) | **Get** /groups/search/with_roles | Search Groups with Roles
 *GroupApi* | [**UpdateGroup**](docs/GroupApi.md#updategroup) | **Patch** /groups/{group_id} | Update Group
 *GroupApi* | [**UpdateUserAttributeGroupValue**](docs/GroupApi.md#updateuserattributegroupvalue) | **Patch** /groups/{group_id}/attribute_values/{user_attribute_id} | Set User Attribute Group Value
+*HomepageApi* | [**AllHomepageItems**](docs/HomepageApi.md#allhomepageitems) | **Get** /homepage_items | Get All Homepage Items
+*HomepageApi* | [**AllHomepageSections**](docs/HomepageApi.md#allhomepagesections) | **Get** /homepage_sections | Get All Homepage sections
+*HomepageApi* | [**AllHomepages**](docs/HomepageApi.md#allhomepages) | **Get** /homepages | Get All Homepages
 *HomepageApi* | [**AllPrimaryHomepageSections**](docs/HomepageApi.md#allprimaryhomepagesections) | **Get** /primary_homepage_sections | Get All Primary homepage sections
+*HomepageApi* | [**CreateHomepage**](docs/HomepageApi.md#createhomepage) | **Post** /homepages | Create Homepage
+*HomepageApi* | [**CreateHomepageItem**](docs/HomepageApi.md#createhomepageitem) | **Post** /homepage_items | Create Homepage Item
+*HomepageApi* | [**CreateHomepageSection**](docs/HomepageApi.md#createhomepagesection) | **Post** /homepage_sections | Create Homepage section
+*HomepageApi* | [**DeleteHomepage**](docs/HomepageApi.md#deletehomepage) | **Delete** /homepages/{homepage_id} | Delete Homepage
+*HomepageApi* | [**DeleteHomepageItem**](docs/HomepageApi.md#deletehomepageitem) | **Delete** /homepage_items/{homepage_item_id} | Delete Homepage Item
+*HomepageApi* | [**DeleteHomepageSection**](docs/HomepageApi.md#deletehomepagesection) | **Delete** /homepage_sections/{homepage_section_id} | Delete Homepage section
+*HomepageApi* | [**Homepage**](docs/HomepageApi.md#homepage) | **Get** /homepages/{homepage_id} | Get Homepage
+*HomepageApi* | [**HomepageItem**](docs/HomepageApi.md#homepageitem) | **Get** /homepage_items/{homepage_item_id} | Get Homepage Item
+*HomepageApi* | [**HomepageSection**](docs/HomepageApi.md#homepagesection) | **Get** /homepage_sections/{homepage_section_id} | Get Homepage section
+*HomepageApi* | [**SearchHomepages**](docs/HomepageApi.md#searchhomepages) | **Get** /homepages/search | Search Homepages
+*HomepageApi* | [**UpdateHomepage**](docs/HomepageApi.md#updatehomepage) | **Patch** /homepages/{homepage_id} | Update Homepage
+*HomepageApi* | [**UpdateHomepageItem**](docs/HomepageApi.md#updatehomepageitem) | **Patch** /homepage_items/{homepage_item_id} | Update Homepage Item
+*HomepageApi* | [**UpdateHomepageSection**](docs/HomepageApi.md#updatehomepagesection) | **Patch** /homepage_sections/{homepage_section_id} | Update Homepage section
 *IntegrationApi* | [**AcceptIntegrationHubLegalAgreement**](docs/IntegrationApi.md#acceptintegrationhublegalagreement) | **Post** /integration_hubs/{integration_hub_id}/accept_legal_agreement | Accept Integration Hub Legal Agreement
 *IntegrationApi* | [**AllIntegrationHubs**](docs/IntegrationApi.md#allintegrationhubs) | **Get** /integration_hubs | Get All Integration Hubs
 *IntegrationApi* | [**AllIntegrations**](docs/IntegrationApi.md#allintegrations) | **Get** /integrations | Get All Integrations
@@ -245,14 +219,6 @@ Class | Method | HTTP request | Description
 *LookmlModelApi* | [**LookmlModel**](docs/LookmlModelApi.md#lookmlmodel) | **Get** /lookml_models/{lookml_model_name} | Get LookML Model
 *LookmlModelApi* | [**LookmlModelExplore**](docs/LookmlModelApi.md#lookmlmodelexplore) | **Get** /lookml_models/{lookml_model_name}/explores/{explore_name} | Get LookML Model Explore
 *LookmlModelApi* | [**UpdateLookmlModel**](docs/LookmlModelApi.md#updatelookmlmodel) | **Patch** /lookml_models/{lookml_model_name} | Update LookML Model
-*MetadataApi* | [**ConnectionColumns**](docs/MetadataApi.md#connectioncolumns) | **Get** /connections/{connection_name}/columns | Get columns for a connection
-*MetadataApi* | [**ConnectionCostEstimate**](docs/MetadataApi.md#connectioncostestimate) | **Post** /connections/{connection_name}/cost_estimate | Estimate costs for a connection
-*MetadataApi* | [**ConnectionDatabases**](docs/MetadataApi.md#connectiondatabases) | **Get** /connections/{connection_name}/databases | List accessible databases to this connection
-*MetadataApi* | [**ConnectionFeatures**](docs/MetadataApi.md#connectionfeatures) | **Get** /connections/{connection_name}/features | Metadata features supported by this connection
-*MetadataApi* | [**ConnectionSchemas**](docs/MetadataApi.md#connectionschemas) | **Get** /connections/{connection_name}/schemas | Get schemas for a connection
-*MetadataApi* | [**ConnectionSearchColumns**](docs/MetadataApi.md#connectionsearchcolumns) | **Get** /connections/{connection_name}/search_columns | Search a connection for columns
-*MetadataApi* | [**ConnectionTables**](docs/MetadataApi.md#connectiontables) | **Get** /connections/{connection_name}/tables | Get tables for a connection
-*MetadataApi* | [**ModelFieldnameSuggestions**](docs/MetadataApi.md#modelfieldnamesuggestions) | **Get** /models/{model_name}/views/{view_name}/fields/{field_name}/suggestions | Model field name suggestions
 *ProjectApi* | [**AllGitBranches**](docs/ProjectApi.md#allgitbranches) | **Get** /projects/{project_id}/git_branches | Get All Git Branches
 *ProjectApi* | [**AllGitConnectionTests**](docs/ProjectApi.md#allgitconnectiontests) | **Get** /projects/{project_id}/git_connection_tests | Get All Git Connection Tests
 *ProjectApi* | [**AllLookmlTests**](docs/ProjectApi.md#alllookmltests) | **Get** /projects/{project_id}/lookml_tests | Get All LookML Tests
@@ -269,7 +235,6 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**GetAllRepositoryCredentials**](docs/ProjectApi.md#getallrepositorycredentials) | **Get** /projects/{root_project_id}/credentials | Get All Repository Credentials
 *ProjectApi* | [**GitBranch**](docs/ProjectApi.md#gitbranch) | **Get** /projects/{project_id}/git_branch | Get Active Git Branch
 *ProjectApi* | [**GitDeployKey**](docs/ProjectApi.md#gitdeploykey) | **Get** /projects/{project_id}/git/deploy_key | Git Deploy Key
-*ProjectApi* | [**LockAll**](docs/ProjectApi.md#lockall) | **Post** /projects/{project_id}/manifest/lock_all | Lock All
 *ProjectApi* | [**Manifest**](docs/ProjectApi.md#manifest) | **Get** /projects/{project_id}/manifest | Get Manifest
 *ProjectApi* | [**Project**](docs/ProjectApi.md#project) | **Get** /projects/{project_id} | Get Project
 *ProjectApi* | [**ProjectFile**](docs/ProjectApi.md#projectfile) | **Get** /projects/{project_id}/files/file | Get Project File
@@ -302,6 +267,7 @@ Class | Method | HTTP request | Description
 *QueryApi* | [**SqlQuery**](docs/QueryApi.md#sqlquery) | **Get** /sql_queries/{slug} | Get SQL Runner Query
 *RenderTaskApi* | [**CreateDashboardRenderTask**](docs/RenderTaskApi.md#createdashboardrendertask) | **Post** /render_tasks/dashboards/{dashboard_id}/{result_format} | Create Dashboard Render Task
 *RenderTaskApi* | [**CreateLookRenderTask**](docs/RenderTaskApi.md#createlookrendertask) | **Post** /render_tasks/looks/{look_id}/{result_format} | Create Look Render Task
+*RenderTaskApi* | [**CreateLookmlDashboardRenderTask**](docs/RenderTaskApi.md#createlookmldashboardrendertask) | **Post** /render_tasks/lookml_dashboards/{dashboard_id}/{result_format} | Create Lookml Dashboard Render Task
 *RenderTaskApi* | [**CreateQueryRenderTask**](docs/RenderTaskApi.md#createqueryrendertask) | **Post** /render_tasks/queries/{query_id}/{result_format} | Create Query Render Task
 *RenderTaskApi* | [**RenderTask**](docs/RenderTaskApi.md#rendertask) | **Get** /render_tasks/{render_task_id} | Get Render Task
 *RenderTaskApi* | [**RenderTaskResults**](docs/RenderTaskApi.md#rendertaskresults) | **Get** /render_tasks/{render_task_id}/results | Render Task Results
@@ -341,6 +307,18 @@ Class | Method | HTTP request | Description
 *ScheduledPlanApi* | [**UpdateScheduledPlan**](docs/ScheduledPlanApi.md#updatescheduledplan) | **Patch** /scheduled_plans/{scheduled_plan_id} | Update Scheduled Plan
 *SessionApi* | [**Session**](docs/SessionApi.md#session) | **Get** /session | Get Session
 *SessionApi* | [**UpdateSession**](docs/SessionApi.md#updatesession) | **Patch** /session | Update Session
+*SpaceApi* | [**AllSpaces**](docs/SpaceApi.md#allspaces) | **Get** /spaces | Get All Spaces
+*SpaceApi* | [**CreateSpace**](docs/SpaceApi.md#createspace) | **Post** /spaces | Create Space
+*SpaceApi* | [**DeleteSpace**](docs/SpaceApi.md#deletespace) | **Delete** /spaces/{space_id} | Delete Space
+*SpaceApi* | [**SearchSpaces**](docs/SpaceApi.md#searchspaces) | **Get** /spaces/search | Search Spaces
+*SpaceApi* | [**Space**](docs/SpaceApi.md#space) | **Get** /spaces/{space_id} | Get Space
+*SpaceApi* | [**SpaceAncestors**](docs/SpaceApi.md#spaceancestors) | **Get** /spaces/{space_id}/ancestors | Get Space Ancestors
+*SpaceApi* | [**SpaceChildren**](docs/SpaceApi.md#spacechildren) | **Get** /spaces/{space_id}/children | Get Space Children
+*SpaceApi* | [**SpaceChildrenSearch**](docs/SpaceApi.md#spacechildrensearch) | **Get** /spaces/{space_id}/children/search | Search Space Children
+*SpaceApi* | [**SpaceDashboards**](docs/SpaceApi.md#spacedashboards) | **Get** /spaces/{space_id}/dashboards | Get Space Dashboards
+*SpaceApi* | [**SpaceLooks**](docs/SpaceApi.md#spacelooks) | **Get** /spaces/{space_id}/looks | Get Space Looks
+*SpaceApi* | [**SpaceParent**](docs/SpaceApi.md#spaceparent) | **Get** /spaces/{space_id}/parent | Get Space Parent
+*SpaceApi* | [**UpdateSpace**](docs/SpaceApi.md#updatespace) | **Patch** /spaces/{space_id} | Update Space
 *ThemeApi* | [**ActiveThemes**](docs/ThemeApi.md#activethemes) | **Get** /themes/active | Get Active Themes
 *ThemeApi* | [**AllThemes**](docs/ThemeApi.md#allthemes) | **Get** /themes | Get All Themes
 *ThemeApi* | [**CreateTheme**](docs/ThemeApi.md#createtheme) | **Post** /themes | Create Theme
@@ -376,7 +354,6 @@ Class | Method | HTTP request | Description
 *UserApi* | [**Me**](docs/UserApi.md#me) | **Get** /user | Get Current User
 *UserApi* | [**SearchUsers**](docs/UserApi.md#searchusers) | **Get** /users/search | Search Users
 *UserApi* | [**SearchUsersNames**](docs/UserApi.md#searchusersnames) | **Get** /users/search/names/{pattern} | Search User Names
-*UserApi* | [**SendUserCredentialsEmailPasswordReset**](docs/UserApi.md#sendusercredentialsemailpasswordreset) | **Post** /users/{user_id}/credentials_email/send_password_reset | Send Password Reset Token
 *UserApi* | [**SetUserAttributeUserValue**](docs/UserApi.md#setuserattributeuservalue) | **Patch** /users/{user_id}/attribute_values/{user_attribute_id} | Set User Attribute User Value
 *UserApi* | [**SetUserRoles**](docs/UserApi.md#setuserroles) | **Put** /users/{user_id}/roles | Set User Roles
 *UserApi* | [**UpdateUser**](docs/UserApi.md#updateuser) | **Patch** /users/{user_id} | Update User
@@ -413,14 +390,8 @@ Class | Method | HTTP request | Description
  - [ApiVersion](docs/ApiVersion.md)
  - [ApiVersionElement](docs/ApiVersionElement.md)
  - [BackupConfiguration](docs/BackupConfiguration.md)
- - [Board](docs/Board.md)
- - [BoardItem](docs/BoardItem.md)
- - [BoardSection](docs/BoardSection.md)
  - [ColorCollection](docs/ColorCollection.md)
  - [ColorStop](docs/ColorStop.md)
- - [ColumnSearch](docs/ColumnSearch.md)
- - [Command](docs/Command.md)
- - [ConnectionFeatures](docs/ConnectionFeatures.md)
  - [ContentFavorite](docs/ContentFavorite.md)
  - [ContentMeta](docs/ContentMeta.md)
  - [ContentMetaGroupUser](docs/ContentMetaGroupUser.md)
@@ -435,15 +406,15 @@ Class | Method | HTTP request | Description
  - [ContentValidationLookMlDashboard](docs/ContentValidationLookMlDashboard.md)
  - [ContentValidationLookMlDashboardElement](docs/ContentValidationLookMlDashboardElement.md)
  - [ContentValidationScheduledPlan](docs/ContentValidationScheduledPlan.md)
+ - [ContentValidationSpace](docs/ContentValidationSpace.md)
  - [ContentValidatorError](docs/ContentValidatorError.md)
  - [ContentView](docs/ContentView.md)
  - [ContinuousPalette](docs/ContinuousPalette.md)
- - [CostEstimate](docs/CostEstimate.md)
- - [CreateCostEstimate](docs/CreateCostEstimate.md)
  - [CreateDashboardFilter](docs/CreateDashboardFilter.md)
  - [CreateDashboardRenderTask](docs/CreateDashboardRenderTask.md)
  - [CreateFolder](docs/CreateFolder.md)
  - [CreateQueryTask](docs/CreateQueryTask.md)
+ - [CreateSpace](docs/CreateSpace.md)
  - [CredentialsApi3](docs/CredentialsApi3.md)
  - [CredentialsEmail](docs/CredentialsEmail.md)
  - [CredentialsEmbed](docs/CredentialsEmbed.md)
@@ -481,7 +452,6 @@ Class | Method | HTTP request | Description
  - [DigestEmailSend](docs/DigestEmailSend.md)
  - [DigestEmails](docs/DigestEmails.md)
  - [DiscretePalette](docs/DiscretePalette.md)
- - [EmbedParams](docs/EmbedParams.md)
  - [EmbedSsoParams](docs/EmbedSsoParams.md)
  - [EmbedUrlResponse](docs/EmbedUrlResponse.md)
  - [Error](docs/Error.md)
@@ -492,10 +462,9 @@ Class | Method | HTTP request | Description
  - [GitConnectionTestResult](docs/GitConnectionTestResult.md)
  - [GitStatus](docs/GitStatus.md)
  - [Group](docs/Group.md)
- - [GroupHierarchy](docs/GroupHierarchy.md)
  - [GroupIdForGroupInclusion](docs/GroupIdForGroupInclusion.md)
  - [GroupIdForGroupUserInclusion](docs/GroupIdForGroupUserInclusion.md)
- - [GroupSearch](docs/GroupSearch.md)
+ - [Homepage](docs/Homepage.md)
  - [HomepageItem](docs/HomepageItem.md)
  - [HomepageSection](docs/HomepageSection.md)
  - [ImportedProject](docs/ImportedProject.md)
@@ -546,10 +515,8 @@ Class | Method | HTTP request | Description
  - [MergeFields](docs/MergeFields.md)
  - [MergeQuery](docs/MergeQuery.md)
  - [MergeQuerySourceQuery](docs/MergeQuerySourceQuery.md)
- - [ModelFieldSuggestions](docs/ModelFieldSuggestions.md)
  - [ModelSet](docs/ModelSet.md)
  - [ModelsNotValidated](docs/ModelsNotValidated.md)
- - [OauthClientApp](docs/OauthClientApp.md)
  - [OidcConfig](docs/OidcConfig.md)
  - [OidcGroupRead](docs/OidcGroupRead.md)
  - [OidcGroupWrite](docs/OidcGroupWrite.md)
@@ -581,28 +548,23 @@ Class | Method | HTTP request | Description
  - [SamlUserAttributeWrite](docs/SamlUserAttributeWrite.md)
  - [ScheduledPlan](docs/ScheduledPlan.md)
  - [ScheduledPlanDestination](docs/ScheduledPlanDestination.md)
- - [Schema](docs/Schema.md)
- - [SchemaColumn](docs/SchemaColumn.md)
- - [SchemaColumns](docs/SchemaColumns.md)
- - [SchemaTable](docs/SchemaTable.md)
- - [SchemaTables](docs/SchemaTables.md)
  - [Session](docs/Session.md)
  - [SessionConfig](docs/SessionConfig.md)
  - [Snippet](docs/Snippet.md)
+ - [Space](docs/Space.md)
+ - [SpaceBase](docs/SpaceBase.md)
  - [SqlQuery](docs/SqlQuery.md)
  - [SqlQueryCreate](docs/SqlQueryCreate.md)
- - [SshPublicKey](docs/SshPublicKey.md)
- - [SshServer](docs/SshServer.md)
- - [SshTunnel](docs/SshTunnel.md)
  - [Theme](docs/Theme.md)
  - [ThemeSettings](docs/ThemeSettings.md)
  - [Timezone](docs/Timezone.md)
- - [UpdateCommand](docs/UpdateCommand.md)
  - [UpdateFolder](docs/UpdateFolder.md)
+ - [UpdateSpace](docs/UpdateSpace.md)
  - [User](docs/User.md)
  - [UserAttribute](docs/UserAttribute.md)
  - [UserAttributeGroupValue](docs/UserAttributeGroupValue.md)
  - [UserAttributeWithValue](docs/UserAttributeWithValue.md)
+ - [UserIdOnly](docs/UserIdOnly.md)
  - [UserLoginLockout](docs/UserLoginLockout.md)
  - [UserPublic](docs/UserPublic.md)
  - [ValidationError](docs/ValidationError.md)

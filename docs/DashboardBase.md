@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Folder** | [**FolderBase**](FolderBase.md) |  | [optional] 
 **Title** | **string** | Dashboard Title | [optional] [readonly] 
 **UserId** | **int64** | Id of User | [optional] [readonly] 
+**Space** | [**SpaceBase**](SpaceBase.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

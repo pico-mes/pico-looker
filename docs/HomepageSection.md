@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **DetailUrl** | **string** | A URL pointing to a page showing further information about the content in the section. | [optional] [readonly] 
 **HomepageId** | **int64** | Id reference to parent homepage | [optional] 
 **HomepageItems** | [**[]HomepageItem**](HomepageItem.md) | Items in the homepage section | [optional] [readonly] 
-**Id** | **int64** | Unique Id | [optional] [readonly] 
+**Id** | **string** | Unique Id | [optional] [readonly] 
 **IsHeader** | **bool** | Is this a header section (has no items) | [optional] [readonly] 
 **ItemOrder** | **[]int64** | ids of the homepage items in the order they should be displayed | [optional] 
 **Title** | **string** | Name of row | [optional] 

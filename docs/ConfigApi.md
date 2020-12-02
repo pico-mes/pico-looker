@@ -1,12 +1,13 @@
 # \ConfigApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AllLegacyFeatures**](ConfigApi.md#AllLegacyFeatures) | **Get** /legacy_features | Get All Legacy Features
 [**AllLocales**](ConfigApi.md#AllLocales) | **Get** /locales | Get All Locales
 [**AllTimezones**](ConfigApi.md#AllTimezones) | **Get** /timezones | Get All Timezones
+[**BackupConfiguration**](ConfigApi.md#BackupConfiguration) | **Get** /backup_configuration | Get Backup Configuration
 [**CloudStorageConfiguration**](ConfigApi.md#CloudStorageConfiguration) | **Get** /cloud_storage | Get Cloud Storage
 [**CreateDigestEmailSend**](ConfigApi.md#CreateDigestEmailSend) | **Post** /digest_email_send | Deliver digest email contents
 [**CustomWelcomeEmail**](ConfigApi.md#CustomWelcomeEmail) | **Get** /custom_welcome_email | Get Custom Welcome Email
@@ -14,6 +15,7 @@ Method | HTTP request | Description
 [**InternalHelpResources**](ConfigApi.md#InternalHelpResources) | **Get** /internal_help_resources_enabled | Get Internal Help Resources
 [**InternalHelpResourcesContent**](ConfigApi.md#InternalHelpResourcesContent) | **Get** /internal_help_resources_content | Get Internal Help Resources Content
 [**LegacyFeature**](ConfigApi.md#LegacyFeature) | **Get** /legacy_features/{legacy_feature_id} | Get Legacy Feature
+[**UpdateBackupConfiguration**](ConfigApi.md#UpdateBackupConfiguration) | **Patch** /backup_configuration | Update Backup Configuration
 [**UpdateCloudStorageConfiguration**](ConfigApi.md#UpdateCloudStorageConfiguration) | **Patch** /cloud_storage | Update Cloud Storage
 [**UpdateCustomWelcomeEmail**](ConfigApi.md#UpdateCustomWelcomeEmail) | **Patch** /custom_welcome_email | Update Custom Welcome Email Content
 [**UpdateCustomWelcomeEmailTest**](ConfigApi.md#UpdateCustomWelcomeEmailTest) | **Put** /custom_welcome_email_test | Send a test welcome email to the currently logged in user with the supplied content 
@@ -102,6 +104,36 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[]Timezone**](Timezone.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BackupConfiguration
+
+> BackupConfiguration BackupConfiguration(ctx, )
+
+Get Backup Configuration
+
+### WARNING: The Looker internal database backup function has been deprecated. 
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BackupConfiguration**](BackupConfiguration.md)
 
 ### Authorization
 
@@ -311,7 +343,7 @@ Get Legacy Feature
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**legacyFeatureId** | **string**| id of legacy feature | 
+**legacyFeatureId** | **int64**| id of legacy feature | 
 
 ### Return type
 
@@ -324,6 +356,40 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBackupConfiguration
+
+> BackupConfiguration UpdateBackupConfiguration(ctx, body)
+
+Update Backup Configuration
+
+### WARNING: The Looker internal database backup function has been deprecated. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**BackupConfiguration**](BackupConfiguration.md)| Options for Backup Configuration | 
+
+### Return type
+
+[**BackupConfiguration**](BackupConfiguration.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -560,7 +626,7 @@ Update Legacy Feature
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**legacyFeatureId** | **string**| id of legacy feature | 
+**legacyFeatureId** | **int64**| id of legacy feature | 
 **body** | [**LegacyFeature**](LegacyFeature.md)| Legacy Feature | 
 
 ### Return type

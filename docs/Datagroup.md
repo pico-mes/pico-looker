@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Can** | **map[string]bool** | Operations the current user is able to perform on this object | [optional] [readonly] 
 **CreatedAt** | **int64** | UNIX timestamp at which this entry was created. | [optional] [readonly] 
-**Id** | **int64** | Unique ID of the datagroup | [optional] [readonly] 
+**Id** | **string** | Unique ID of the datagroup | [optional] [readonly] 
 **ModelName** | **string** | Name of the model containing the datagroup. Unique when combined with name. | [optional] [readonly] 
 **Name** | **string** | Name of the datagroup. Unique when combined with model_name. | [optional] [readonly] 
 **StaleBefore** | **int64** | UNIX timestamp before which cache entries are considered stale. Cannot be in the future. | [optional] 

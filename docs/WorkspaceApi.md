@@ -1,6 +1,6 @@
 # \WorkspaceApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

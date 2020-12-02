@@ -1,6 +1,6 @@
 # \DashboardApi
 
-All URIs are relative to *https://picomes.cloud.looker.com:443/api/4.0*
+All URIs are relative to *https://picomes.cloud.looker.com:443/api/3.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -977,18 +977,18 @@ Optional parameters are passed through a pointer to a SearchDashboardsOpts struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **optional.String**| Match dashboard id. | 
+ **id** | **optional.Int64**| Match dashboard id. | 
  **slug** | **optional.String**| Match dashboard slug. | 
  **title** | **optional.String**| Match Dashboard title. | 
  **description** | **optional.String**| Match Dashboard description. | 
- **contentFavoriteId** | **optional.String**| Filter on a content favorite id. | 
+ **contentFavoriteId** | **optional.Int64**| Filter on a content favorite id. | 
+ **spaceId** | **optional.String**| Filter on a particular space. | 
  **folderId** | **optional.String**| Filter on a particular space. | 
  **deleted** | **optional.String**| Filter on dashboards deleted status. | 
  **userId** | **optional.String**| Filter on dashboards created by a particular user. | 
  **viewCount** | **optional.String**| Filter on a particular value of view_count | 
- **contentMetadataId** | **optional.String**| Filter on a content favorite id. | 
+ **contentMetadataId** | **optional.Int64**| Filter on a content favorite id. | 
  **curate** | **optional.Bool**| Exclude items that exist only in personal spaces other than the users | 
- **lastViewedAt** | **optional.String**| Select dashboards based on when they were last viewed | 
  **fields** | **optional.String**| Requested fields. | 
  **page** | **optional.Int64**| Requested page. | 
  **perPage** | **optional.Int64**| Results per page. | 

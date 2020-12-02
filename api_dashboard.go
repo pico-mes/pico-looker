@@ -1,9 +1,9 @@
 /*
- * Looker API 4.0 (Experimental) Reference
+ * Looker API 3.1 Reference
  *
- *  Welcome to the future! This is an early preview of our next-generation Looker API 4.0. API 4.0 runs alongside APIs 3.1 and 3.0. We've tagged 4.0 as \"experimental\" to reflect that we have more work planned for API 4.0 which may include breaking changes. Please pardon our dust while we remodel a few rooms!  ### In This Release  We're spinning up this new API 4.0 version so that we can make adjustments to our API functions, parameters, and response types to fix bugs and inconsistencies. These changes fall outside the bounds of non-breaking additive changes we can make to our stable API 3.1.  One benefit of these type adjustments in API 4.0 is dramatically better support for strongly typed languages like TypeScript, Kotlin, Java, and more. Looker is also creating client SDKs to call the Looker API from these and other languages. These client SDKs will be available as pre-built packages for download from public repositories such as npmjs.org, RubyGems.org, PyPi.org. If you use an IDE for software development, you will soon be able to install a Looker SDK for your programming language with the click of a button!  While API 3.1 is still the defacto Looker API (\"current\", \"stable\", \"default\", etc), the bulk of our development activity will gradually shift to API 4.0.  
+ * ### Authorization  The Looker API uses Looker **API3** credentials for authorization and access control. Looker admins can create API3 credentials on Looker's **Admin/Users** page. Pass API3 credentials to the **_/login** endpoint to obtain a temporary access_token. Include that access_token in the Authorization header of Looker API requests. For details, see [Looker API Authorization](https://looker.com/docs/r/api/authorization)  ### Client SDKs  The Looker API is a RESTful system that should be usable by any programming language capable of making HTTPS requests. Client SDKs for a variety of programming languages can be generated from the Looker API's Swagger JSON metadata to streamline use of the Looker API in your applications. A client SDK for Ruby is available as an example. For more information, see [Looker API Client SDKs](https://looker.com/docs/r/api/client_sdks)  ### Try It Out!  The 'api-docs' page served by the Looker instance includes 'Try It Out!' buttons for each API method. After logging in with API3 credentials, you can use the \"Try It Out!\" buttons to call the API directly from the documentation page to interactively explore API features and responses.  Note! With great power comes great responsibility: The \"Try It Out!\" button makes API calls to your live Looker instance. Be especially careful with destructive API operations such as `delete_user` or similar. There is no \"undo\" for API operations.  ### Versioning  Future releases of Looker will expand this API release-by-release to securely expose more and more of the core power of Looker to API client applications. API endpoints marked as \"beta\" may receive breaking changes without warning (but we will try to avoid doing that). Stable (non-beta) API endpoints should not receive breaking changes in future releases. For more information, see [Looker API Versioning](https://looker.com/docs/r/api/versioning)  ### In This Release  The following are a few examples of noteworthy items that have changed between API 3.0 and API 3.1. For more comprehensive coverage of API changes, please see the release notes for your Looker release.  ### Examples of new things added in API 3.1 (compared to API 3.0):  * [Dashboard construction](#!/3.1/Dashboard/) APIs * [Themes](#!/3.1/Theme/) and [custom color collections](#!/3.1/ColorCollection) APIs * Create and run [SQL Runner](#!/3.1/Query/run_sql_query) queries * Create and run [merged results](#!/3.1/Query/create_merge_query) queries * Create and modify [dashboard filters](#!/3.1/Dashboard/create_dashboard_filter) * Create and modify [password requirements](#!/3.1/Auth/password_config)  ### Deprecated in API 3.0  The following functions and properties have been deprecated in API 3.0.  They continue to exist and work in API 3.0 for the next several Looker releases but they have not been carried forward to API 3.1:  * Dashboard Prefetch functions * User access_filter functions * User API 1.0 credentials functions * Space.is_root and Space.is_user_root properties. Use Space.is_shared_root and Space.is_users_root instead.  ### Semantic changes in API 3.1:  * [all_looks()](#!/3.1/Look/all_looks) no longer includes soft-deleted looks, matching [all_dashboards()](#!/3.1/Dashboard/all_dashboards) behavior. You can find soft-deleted looks using [search_looks()](#!/3.1/Look/search_looks) with the `deleted` param set to True. * [all_spaces()](#!/3.1/Space/all_spaces) no longer includes duplicate items * [search_users()](#!/3.1/User/search_users) no longer accepts Y,y,1,0,N,n for Boolean params, only \"true\" and \"false\". * For greater client and network compatibility, [render_task_results](#!/3.1/RenderTask/render_task_results) now returns HTTP status **202 Accepted** instead of HTTP status **102 Processing** * [all_running_queries()](#!/3.1/Query/all_running_queries) and [kill_query](#!/3.1/Query/kill_query) functions have moved into the [Query](#!/3.1/Query/) function group.   If you have application code which relies on the old behavior of the APIs above, you may continue using the API 3.0 functions in this Looker release. We strongly suggest you update your code to use API 3.1 analogs as soon as possible.  
  *
- * API version: 4.0.7.18
+ * API version: 3.1.0
  * Generated by: OpenAPI Generator (https://openapi-generator.tech)
  */
 
@@ -2796,18 +2796,18 @@ func (a *DashboardApiService) SearchDashboardElements(ctx _context.Context, loca
 
 // SearchDashboardsOpts Optional parameters for the method 'SearchDashboards'
 type SearchDashboardsOpts struct {
-    Id optional.String
+    Id optional.Int64
     Slug optional.String
     Title optional.String
     Description optional.String
-    ContentFavoriteId optional.String
+    ContentFavoriteId optional.Int64
+    SpaceId optional.String
     FolderId optional.String
     Deleted optional.String
     UserId optional.String
     ViewCount optional.String
-    ContentMetadataId optional.String
+    ContentMetadataId optional.Int64
     Curate optional.Bool
-    LastViewedAt optional.String
     Fields optional.String
     Page optional.Int64
     PerPage optional.Int64
@@ -2822,18 +2822,18 @@ SearchDashboards Search Dashboards
 ### Search Dashboards  Returns an **array of dashboard objects** that match the specified search criteria.  If multiple search params are given and &#x60;filter_or&#x60; is FALSE or not specified, search params are combined in a logical AND operation. Only rows that match *all* search param criteria will be returned.  If &#x60;filter_or&#x60; is TRUE, multiple search params are combined in a logical OR operation. Results will include rows that match **any** of the search criteria.  String search params use case-insensitive matching. String search params can contain &#x60;%&#x60; and &#39;_&#39; as SQL LIKE pattern match wildcard expressions. example&#x3D;\&quot;dan%\&quot; will match \&quot;danger\&quot; and \&quot;Danzig\&quot; but not \&quot;David\&quot; example&#x3D;\&quot;D_m%\&quot; will match \&quot;Damage\&quot; and \&quot;dump\&quot;  Integer search params can accept a single value or a comma separated list of values. The multiple values will be combined under a logical OR operation - results will match at least one of the given values.  Most search params can accept \&quot;IS NULL\&quot; and \&quot;NOT NULL\&quot; as special expressions to match or exclude (respectively) rows where the column is null.  Boolean search params accept only \&quot;true\&quot; and \&quot;false\&quot; as values.   The parameters &#x60;limit&#x60;, and &#x60;offset&#x60; are recommended for fetching results in page-size chunks.  Get a **single dashboard** by id with [dashboard()](#!/Dashboard/dashboard) 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SearchDashboardsOpts - Optional Parameters:
- * @param "Id" (optional.String) -  Match dashboard id.
+ * @param "Id" (optional.Int64) -  Match dashboard id.
  * @param "Slug" (optional.String) -  Match dashboard slug.
  * @param "Title" (optional.String) -  Match Dashboard title.
  * @param "Description" (optional.String) -  Match Dashboard description.
- * @param "ContentFavoriteId" (optional.String) -  Filter on a content favorite id.
+ * @param "ContentFavoriteId" (optional.Int64) -  Filter on a content favorite id.
+ * @param "SpaceId" (optional.String) -  Filter on a particular space.
  * @param "FolderId" (optional.String) -  Filter on a particular space.
  * @param "Deleted" (optional.String) -  Filter on dashboards deleted status.
  * @param "UserId" (optional.String) -  Filter on dashboards created by a particular user.
  * @param "ViewCount" (optional.String) -  Filter on a particular value of view_count
- * @param "ContentMetadataId" (optional.String) -  Filter on a content favorite id.
+ * @param "ContentMetadataId" (optional.Int64) -  Filter on a content favorite id.
  * @param "Curate" (optional.Bool) -  Exclude items that exist only in personal spaces other than the users
- * @param "LastViewedAt" (optional.String) -  Select dashboards based on when they were last viewed
  * @param "Fields" (optional.String) -  Requested fields.
  * @param "Page" (optional.Int64) -  Requested page.
  * @param "PerPage" (optional.Int64) -  Results per page.
@@ -2875,6 +2875,9 @@ func (a *DashboardApiService) SearchDashboards(ctx _context.Context, localVarOpt
 	if localVarOptionals != nil && localVarOptionals.ContentFavoriteId.IsSet() {
 		localVarQueryParams.Add("content_favorite_id", parameterToString(localVarOptionals.ContentFavoriteId.Value(), ""))
 	}
+	if localVarOptionals != nil && localVarOptionals.SpaceId.IsSet() {
+		localVarQueryParams.Add("space_id", parameterToString(localVarOptionals.SpaceId.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.FolderId.IsSet() {
 		localVarQueryParams.Add("folder_id", parameterToString(localVarOptionals.FolderId.Value(), ""))
 	}
@@ -2892,9 +2895,6 @@ func (a *DashboardApiService) SearchDashboards(ctx _context.Context, localVarOpt
 	}
 	if localVarOptionals != nil && localVarOptionals.Curate.IsSet() {
 		localVarQueryParams.Add("curate", parameterToString(localVarOptionals.Curate.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.LastViewedAt.IsSet() {
-		localVarQueryParams.Add("last_viewed_at", parameterToString(localVarOptionals.LastViewedAt.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Fields.IsSet() {
 		localVarQueryParams.Add("fields", parameterToString(localVarOptionals.Fields.Value(), ""))
