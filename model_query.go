@@ -41,9 +41,9 @@ type Query struct {
 	// Fields on which to run subtotals
 	Subtotals []string `json:"subtotals,omitempty"`
 	// Visualization configuration properties. These properties are typically opaque and differ based on the type of visualization used. There is no specified set of allowed keys. The values can be any type supported by JSON. A \"type\" key with a string value is often present, and is used by Looker to determine which visualization to present. Visualizations ignore unknown vis_config properties.
-	VisConfig map[string]string `json:"vis_config,omitempty"`
+	VisConfig map[string]interface{} `json:"vis_config,omitempty"`
 	// The filter_config represents the state of the filter UI on the explore page for a given query. When running a query via the Looker UI, this parameter takes precedence over \"filters\". When creating a query or modifying an existing query, \"filter_config\" should be set to null. Setting it to any other value could cause unexpected filtering behavior. The format should be considered opaque.
-	FilterConfig map[string]string `json:"filter_config,omitempty"`
+	FilterConfig map[string]interface{} `json:"filter_config,omitempty"`
 	// Visible UI Sections
 	VisibleUiSections string `json:"visible_ui_sections,omitempty"`
 	// Slug
