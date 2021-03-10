@@ -28,5 +28,5 @@ type ResultMakerWithIdVisConfigAndDynamicFields struct {
 	SqlQueryId string `json:"sql_query_id,omitempty"`
 	Query Query `json:"query,omitempty"`
 	// Vis config of the constituent Query, or Merge Query.
-	VisConfig map[string]string `json:"vis_config,omitempty"`
+	VisConfig map[string]interface{} `json:"vis_config,omitempty"`
 }
